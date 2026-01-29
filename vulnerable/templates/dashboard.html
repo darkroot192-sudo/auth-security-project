@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2> Dashboard</h2>
+
+<div style="background: #f8f9fa; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; border-left: 4px solid #ff4757;">
+    <p style="margin-bottom: 0.5rem;">Bienvenido, <strong style="color: #ff4757;">{{ username }}</strong>!</p>
+    <p>Rol: <span style="color: #c44569; font-weight: bold;">{{ role }}</span></p>
+</div>
+
+<!-- VULNERABLE: XSS -->
+{% if message %}
+<div style="margin-top: 1rem; padding: 1rem; background: #fff3cd; border-radius: 8px; border-left: 4px solid #ffa502;">
+    <strong>Mensaje:</strong> {{ message|safe }}
+</div>
+{% endif %}
+
+<div style="margin-top: 2rem;">
+    <a href="/profile" style="display: inline-block; padding: 0.8rem 2rem; background: linear-gradient(135deg, #ff6b6b, #ee5a6f); color: white; border-radius: 8px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);">
+        Ver mi perfil
+    </a>
+</div>
+
+<div class="danger-zone" style="margin-top: 2rem; font-size: 0.9rem;">
+    <strong> Pista de pentesting:</strong>
+    <br>Prueba XSS: <code>?message=&lt;script&gt;alert('XSS')&lt;/script&gt;</code>
+    <br>O este: <code>?message=&lt;img src=x onerror="alert('XSS')"&gt;</code>
+</div>
+{% endblock %}

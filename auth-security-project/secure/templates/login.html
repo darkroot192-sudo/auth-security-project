@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2> Iniciar Sesión</h2>
+
+<form method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    
+    <div class="form-group">
+        <label>Usuario:</label>
+        <input type="text" name="username" required maxlength="50">
+    </div>
+    <div class="form-group">
+        <label>Contraseña:</label>
+        <input type="password" name="password" required>
+    </div>
+    <button type="submit">Entrar</button>
+</form>
+
+<p style="margin-top: 1rem; text-align: center; color: #b8c5d6;">
+    ¿No tienes cuenta? <a href="/register" style="color: #367bf5; font-weight: bold;">Regístrate aquí</a>
+</p>
+
+<div class="security-info" style="margin-top: 2rem; font-size: 0.9rem;">
+    <strong>     Seguridad implementada:</strong>
+    <br>• Prepared Statements (SQL Injection Prevention)
+    <br>• Contraseñas hasheadas con Bcrypt
+    <br>• Protección CSRF con tokens
+    <br>• Validación de entrada en servidor
+</div>
+{% endblock %}

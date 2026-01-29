@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2> Dashboard</h2>
+
+<div style="background: rgba(54, 123, 245, 0.1); padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem; border-left: 4px solid #367bf5;">
+    <p style="margin-bottom: 0.5rem; color: #b8c5d6;">Bienvenido, <strong style="color: #367bf5;">{{ username }}</strong>!</p>
+    <p style="color: #b8c5d6;">Rol: <span style="color: #28a745; font-weight: bold;">{{ role }}</span></p>
+</div>
+
+<!-- SEGURO: XSS Prevention - contenido escapado -->
+{% if message %}
+<div style="margin-top: 1rem; padding: 1rem; background: rgba(54, 123, 245, 0.15); border-radius: 8px; border-left: 4px solid #367bf5; color: #b8c5d6;">
+    <strong>Mensaje:</strong> {{ message }}
+</div>
+{% endif %}
+
+<div style="margin-top: 2rem;">
+    <a href="/profile" style="display: inline-block; padding: 0.8rem 2rem; background: linear-gradient(135deg, #367bf5, #4d94ff); color: white; border-radius: 8px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(54, 123, 245, 0.4);">
+        Ver mi perfil
+    </a>
+</div>
+
+<div class="security-info" style="margin-top: 2rem; font-size: 0.9rem;">
+    <strong> Protección XSS Activa:</strong>
+    <br>• Todo el contenido HTML es escapado automáticamente
+    <br>• No se ejecuta JavaScript malicioso
+    <br>• Headers CSP configurados
+    <br><br>
+    Intenta: <code>?message=&lt;script&gt;alert('XSS')&lt;/script&gt;</code>
+    <br>El código se mostrará como texto, NO se ejecutará.
+</div>
+{% endblock %}

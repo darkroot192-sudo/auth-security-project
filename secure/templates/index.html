@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1> Sistema Seguro</h1>
+<p style="margin-bottom: 2rem; color: #b8c5d6;">Versión fortificada con todas las vulnerabilidades corregidas</p>
+
+<div class="security-info">
+    <strong> CARACTERÍSTICAS DE SEGURIDAD:</strong>
+    <ul style="margin-top: 0.5rem; margin-left: 1.5rem; line-height: 1.8;">
+        <li>✓ Protección contra SQL Injection (Prepared Statements)</li>
+        <li>✓ Prevención de XSS (HTML Escaping)</li>
+        <li>✓ Validación de autorización (IDOR Fix)</li>
+        <li>✓ Contraseñas hasheadas con Bcrypt</li>
+        <li>✓ Protección CSRF</li>
+        <li>✓ Headers de seguridad</li>
+    </ul>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+    <a href="/login" style="padding: 2rem; background: linear-gradient(135deg, #367bf5, #4d94ff); color: white; text-align: center; border-radius: 10px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(54, 123, 245, 0.4);">
+        Iniciar Sesión
+    </a>
+    <a href="/register" style="padding: 2rem; background: linear-gradient(135deg, #4d94ff, #6aa3ff); color: white; text-align: center; border-radius: 10px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(77, 148, 255, 0.4);">
+        Registrarse
+    </a>
+</div>
+{% endblock %}
