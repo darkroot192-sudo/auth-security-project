@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: auth-vulnerable
+    env: python
+    buildCommand: "pip install -r vulnerable/requirements.txt"
+    startCommand: "cd vulnerable && gunicorn app:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13
+      - key: FLASK_APP
+        value: app.py
+      
+  - type: web
+    name: auth-secure
+    env: python
+    buildCommand: "pip install -r secure/requirements.txt"
+    startCommand: "cd secure && gunicorn app:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13
+      - key: FLASK_APP
+        value: app.py
+      - key: SECRET_KEY
+        generateValue: true
