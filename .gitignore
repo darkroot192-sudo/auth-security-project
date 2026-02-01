@@ -213,3 +213,11 @@ __marimo__/
 
 # Backups
 *_backup.py
+
+# SQLite databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Backups
+*_backup.py
