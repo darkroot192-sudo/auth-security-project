@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, flash
-import mysql.connector
+import sqlite3
 from database import create_connection
 
 app = Flask(__name__)
@@ -39,7 +39,7 @@ def login():
             else:
                 flash('Usuario o contraseña incorrectos', 'danger')
                 
-        except mysql.connector.Error as e:
+        except sqlite3.Error as e:
             flash(f'Error SQL: {str(e)}', 'danger')
             print(f"ERROR SQL: {e}")
         finally:
@@ -64,7 +64,7 @@ def register():
             connection.commit()
             flash('Usuario registrado exitosamente!', 'success')
             return redirect('/login')
-        except mysql.connector.Error as e:
+        except sqlite3.Error as e:
             flash(f'Error al registrar: {str(e)}', 'danger')
         finally:
             cursor.close()
@@ -100,7 +100,7 @@ def profile():
     try:
         cursor.execute(f"SELECT * FROM users WHERE id = {user_id}")
         user = cursor.fetchone()
-    except mysql.connector.Error as e:
+    except sqlite3.Error as e:
         flash(f'Error: {str(e)}', 'danger')
         user = None
     finally:
@@ -115,8 +115,6 @@ def logout():
     flash('Sesión cerrada', 'success')
     return redirect('/')
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
 if __name__ == '__main__':
     import os
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)

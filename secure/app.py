@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, flash
 from markupsafe import escape
-import mysql.connector
+import sqlite3
 from database import create_connection
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_wtf.csrf import CSRFProtect
@@ -110,7 +110,7 @@ def register():
             connection.commit()
             flash('Usuario registrado exitosamente!', 'success')
             return redirect('/login')
-        except mysql.connector.IntegrityError:
+        except sqlite3.IntegrityError:
             flash('El usuario ya existe', 'danger')
         except Exception as e:
             flash('Error al registrar usuario', 'danger')
@@ -186,4 +186,5 @@ def logout():
 
 if __name__ == '__main__':
    import os
-   app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)),debug=False, 
+   port = int(os.environ.get('PORT', 5001))
+   app.run(host='0.0.0.0', port=port, debug=False) 
