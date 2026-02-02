@@ -49,7 +49,7 @@ def login():
             flash('Error de conexión a la base de datos', 'danger')
             return render_template('login.html')
         
-        cursor = connection.cursor(dictionary=True)
+        cursor = connection.cursor()
         
         # SEGURO: Prepared statement (previene SQL Injection)
         query = "SELECT * FROM users WHERE username = %s"
@@ -162,7 +162,7 @@ def profile():
         flash('Error de conexión', 'danger')
         return redirect('/dashboard')
     
-    cursor = connection.cursor(dictionary=True)
+    cursor = connection.cursor()
     
     # SEGURO: Prepared statement + No se devuelve la contraseña
     query = "SELECT id, username, email, role, created_at FROM users WHERE id = %s"

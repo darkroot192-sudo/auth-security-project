@@ -20,7 +20,7 @@ def login():
             flash('Error de conexión', 'danger')
             return render_template('login.html')
             
-        cursor = connection.cursor(dictionary=True, buffered=True)  # buffered=True
+        cursor = connection.cursor()
         
         # VULNERABLE: SQL Injection
         query = f"SELECT * FROM users WHERE username = '{username}' AND password = '{password}'"
@@ -30,10 +30,10 @@ def login():
             cursor.execute(query)
             user = cursor.fetchone()  # Solo toma el primer resultado
             
-            if user:
+            if user: 
                 session['user_id'] = user['id']
                 session['username'] = user['username']
-                session['role'] = user['role']
+                session['role'] = user ['role']
                 flash('Login exitoso!', 'success')
                 return redirect('/dashboard')
             else:
@@ -56,7 +56,7 @@ def register():
         email = request.form['email']
         
         connection = create_connection()
-        cursor = connection.cursor(buffered=True)
+        cursor = connection.cursor()
         
         try:
             query = "INSERT INTO users (username, password, email) VALUES (%s, %s, %s)"
@@ -95,7 +95,7 @@ def profile():
     user_id = request.args.get('id', session['user_id'])
     
     connection = create_connection()
-    cursor = connection.cursor(dictionary=True, buffered=True)
+    cursor = connection.cursor() 
     
     try:
         cursor.execute(f"SELECT * FROM users WHERE id = {user_id}")
@@ -118,4 +118,5 @@ def logout():
 if __name__ == '__main__':
     import os
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)
+
 
