@@ -9,8 +9,8 @@
 
 | Versión | URL | Propósito |
 |---------|-----|-----------|
-| 🔓 Vulnerable | [auth-vulnerable.onrender.com](https://auth-vulnerable.onrender.com) | Demostración de vulnerabilidades |
-| 🔒 Segura | [auth-secure.onrender.com](https://auth-secure.onrender.com) | Implementación segura |
+| 🔓 Vulnerable | [auth-vulnerable.onrender.com](https://auth-security-project.onrender.com) | Demostración de vulnerabilidades |
+| 🔒 Segura | [auth-secure.onrender.com](https://auth-security-project-2.onrender.com)) | Implementación segura |
 
 ## 📸 Screenshots
 
